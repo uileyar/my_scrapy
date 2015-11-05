@@ -8,10 +8,19 @@
 import scrapy
 
 
-class MyScrapyItem(scrapy.Item):
+class DomzMainItem(scrapy.Item):
     # define the fields for your item here like:
     title = scrapy.Field()
     url = scrapy.Field()
     desc = scrapy.Field()
 
+class Product(scrapy.Item):
+    name = scrapy.Field()
+    price = scrapy.Field()
+    stock = scrapy.Field()
+    last_updated = scrapy.Field(serializer=str)
+    last = scrapy.Field()
+
+
     pass
+

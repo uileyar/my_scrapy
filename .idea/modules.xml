@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../apkspider/.idea/apkspider.iml" filepath="$PROJECT_DIR$/../../apkspider/.idea/apkspider.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../dirbot/.idea/dirbot.iml" filepath="$PROJECT_DIR$/../dirbot/.idea/dirbot.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/my_scrapy.iml" filepath="$PROJECT_DIR$/.idea/my_scrapy.iml" />
     </modules>
   </component>
