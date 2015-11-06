@@ -21,6 +21,9 @@ class Product(scrapy.Item):
     last_updated = scrapy.Field(serializer=str)
     last = scrapy.Field()
 
-
-    pass
+class SinaMainItem(scrapy.Item):
+    # define the fields for your item here like:
+    title = scrapy.Field()
+    url = scrapy.Field()
+    desc = scrapy.Field()
 
