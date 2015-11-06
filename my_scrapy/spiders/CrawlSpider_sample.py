@@ -8,13 +8,12 @@ from my_scrapy.items import DomzMainItem
 from my_scrapy.items import Product
 from urlparse import urlparse
 
-#class DomzSpider (scrapy.Spider):
-class DomzSpider (CrawlSpider):
-    name = "domz"
-    #allowed_domains = ["domz.org"]
+
+class CrawlSpiderSample (CrawlSpider):
+    name = "test1"
+    allowed_domains = ["sina.cn"]
     start_urls = [
-        #"http://www.dmoz.org/Computers/Programming/Languages/Python/Books/",
-        "http://www.dmoz.org/Computers/Programming/Languages/Python/Resources/"
+       "http://sina.cn/"
     ]
 
     rules = (
@@ -22,20 +21,6 @@ class DomzSpider (CrawlSpider):
 
         #Rule(LinkExtractor(allow=('python', )), callback='parse_item2'),
     )
-
-    def __init__(self, category=None, *args, **kwargs):
-        super(DomzSpider, self).__init__(*args, **kwargs)
-
-    def itemTest(self):
-        product = Product(name='Desktop PC', price=1000)
-        print product.get('last_updated', 'not set')
-        print product.get('lala', 'unknown field')
-        print 'name in product:','name' in product
-        print 'name in product.fields:','name' in product.fields
-        print 'stock in product:','stock' in product
-        print 'last_updated in product:','last_updated' in product
-        print 'last_updated in product.fields:','last_updated' in product.fields
-        print 'lala in product:', 'lala' in product
 
     def parse_item1(self, response):
         self.log('parse_item1: %s' % response.url)

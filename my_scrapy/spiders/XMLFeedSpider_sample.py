@@ -4,18 +4,17 @@ import scrapy
 from scrapy.contrib.spiders import XMLFeedSpider
 
 from my_scrapy.items import SinaMainItem
-from urlparse import urlparse
 
-class SinaSpider (XMLFeedSpider):
-    name = "sina"
+class XmlFeedSpiderSample (XMLFeedSpider):
+    name = "test2"
     #allowed_domains = ["sina.cn"]
     start_urls = [
-        #"http://www.dmoz.org/Computers/Programming/Languages/Python/Books/"
-        "http://sina.cn/"
+        "http://www.dmoz.org/Computers/Programming/Languages/Python/Books/"
+        #"http://sina.cn/"
     ]
 
     #'html','xml','iternodes'
-    iterator = 'html'
+    iterator = 'iternodes'
     itertag = 'ul'
 
 
