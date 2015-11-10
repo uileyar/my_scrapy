@@ -30,7 +30,7 @@ class SinaMainItem(scrapy.Item):
 class LawsonItem(scrapy.Item):
     city = scrapy.Field()
     address = scrapy.Field()
-    coord = scrapy.Field()
+    coords = scrapy.Field()
     district = scrapy.Field()
     name = scrapy.Field()
     tel = scrapy.Field()

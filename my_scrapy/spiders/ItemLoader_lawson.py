@@ -11,11 +11,13 @@ from scrapy.http import Request
 from scrapy.selector import HtmlXPathSelector
 from scrapy.utils.response import get_base_url
 import urllib
+import json
 
 from my_scrapy.items import LawsonItem
 
+
 class StoreLoader(XPathItemLoader):
-  default_output_processor = Compose(lambda v: v[0], unicode.strip)
+    default_output_processor = Compose(lambda v: v[0], unicode.strip)
 
 
 class LawsonSpider(scrapy.Spider):
@@ -32,7 +34,7 @@ class LawsonSpider(scrapy.Spider):
 
         api_url = '/api/v1/stores?'
 
-        d = {'city':'temp','district':'', 'keyword':''}
+        d = {'city': 'temp', 'district': '', 'keyword': ''}
 
         sel = scrapy.Selector(response)
         sites = sel.xpath('//select[@id="store_city"]/option')
@@ -41,16 +43,26 @@ class LawsonSpider(scrapy.Spider):
             self.log('option = %s' % option)
 
             d['city'] = option[0].encode('utf8')
-            #self.log('city = %s' % d['city'])
+            # self.log('city = %s' % d['city'])
 
-            url = urljoin(base_url, api_url+urllib.urlencode(d))
+            url = urljoin(base_url, api_url + urllib.urlencode(d))
             self.log('url = %s' % url)
             req = scrapy.Request(url, callback=self.parse_geo)
             yield req
 
-
     def parse_geo(self, response):
         self.log("parse_geo url %s" % response.url)
+        dicts = json.loads(response.body)
 
-        pass
+        item = LawsonItem()
+        for dic in dicts:
+            item['city'] = dic['city']
+            item['address'] = dic['address']
+            item['coords'] = dic['coords']
+            item['district'] = dic['district']
+            item['name'] = dic['name']
+            item['tel'] = dic['tel']
+            item['id'] = dic['id']
+
+            yield item
 
