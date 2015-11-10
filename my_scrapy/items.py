@@ -27,3 +27,11 @@ class SinaMainItem(scrapy.Item):
     url = scrapy.Field()
     desc = scrapy.Field()
 
+class LawsonItem(scrapy.Item):
+    city = scrapy.Field()
+    address = scrapy.Field()
+    coord = scrapy.Field()
+    district = scrapy.Field()
+    name = scrapy.Field()
+    tel = scrapy.Field()
+    id = scrapy.Field()
