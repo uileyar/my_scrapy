@@ -35,3 +35,8 @@ class LawsonItem(scrapy.Item):
     name = scrapy.Field()
     tel = scrapy.Field()
     id = scrapy.Field()
+
+class EtodayItem(scrapy.Item):
+    title = scrapy.Field()
+    image_urls = scrapy.Field()
+    images = scrapy.Field()

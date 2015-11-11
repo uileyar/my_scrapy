@@ -1,17 +1,13 @@
 __author__ = 'root'
 
 import scrapy
-from urlparse import urljoin
-
-from scrapy.contrib.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.contrib.loader import XPathItemLoader
 from scrapy.contrib.loader.processor import Compose
-from scrapy.contrib.spiders import CrawlSpider, Rule
-from scrapy.http import Request
-from scrapy.selector import HtmlXPathSelector
 from scrapy.utils.response import get_base_url
+from scrapy.utils.response import open_in_browser
 import urllib
 import json
+from urlparse import urljoin
 
 from my_scrapy.items import LawsonItem
 
@@ -31,6 +27,7 @@ class LawsonSpider(scrapy.Spider):
         self.log("parse url %s" % response.url)
         base_url = get_base_url(response)
         self.log("base_url %s" % base_url)
+        open_in_browser(response)
 
         api_url = '/api/v1/stores?'
 

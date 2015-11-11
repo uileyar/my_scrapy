@@ -61,9 +61,11 @@ NEWSPIDER_MODULE = 'my_scrapy.spiders'
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'my_scrapy.pipelines.SomePipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'my_scrapy.pipelines.LawsonPipeline': 100,
+    'my_scrapy.pipelines.MyScrapyPipeline': 200,
+	'scrapy.contrib.pipeline.images.ImagesPipeline': 1,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -83,3 +85,7 @@ NEWSPIDER_MODULE = 'my_scrapy.spiders'
 #HTTPCACHE_DIR='httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES=[]
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+IMAGES_STORE = '/home/john/picpic'
+IMAGES_MIN_HEIGHT = 300
+IMAGES_MIN_WIDTH = 300
