@@ -1,3 +1,4 @@
+# -*- coding: cp936 -*-
 __author__ = 'root'
 
 import scrapy
@@ -12,26 +13,41 @@ from urlparse import urljoin
 from my_scrapy.items import EtodayItem
 
 
-
 class EtodaySpider(scrapy.Spider):
     name = "etoday"
     allowed_domains = ["818today.com"]
     start_urls = [
-        "http://www.818today.com/xingganmeinv/"
+        #"http://www.818today.com/xingganmeinv",
+        #"http://www.818today.com/qingchunmeinv/",
+        #"http://www.818today.com/lianglichemo/",
+        "http://www.818today.com/rihanmeinv/",
     ]
 
     def parse(self, response):
         self.log("parse url %s" % response.url)
         base_url = get_base_url(response)
-        self.log("base_url %s" % base_url)
+        #self.log("base_url %s" % base_url)
+
         #open_in_browser(response)
 
         sel = scrapy.Selector(response)
+
+        sites = sel.xpath('//td[@class="PGTXT"]/a[@class="bigfy"]')
+        for site in sites:
+            url = site.xpath('@href').extract()
+            name = site.xpath('text()').extract()[0]
+            if name == 'ÏÂÒ»Ò³'.decode('gb2312'):
+                if len(url) > 0:
+                    next_url = urljoin(base_url, url[0])
+                    #self.log('next_url = %s' % next_url)
+                    req = scrapy.Request(next_url, callback=self.parse)
+                    yield req
+
         sites = sel.xpath('//div[@class="pic"]')
         for site in sites:
             url = site.xpath('a/@href').extract()
             sub_url = urljoin(base_url, url[0])
-            self.log('sub_url = %s' % sub_url)
+            #self.log('sub_url = %s' % sub_url)
             req = scrapy.Request(sub_url, callback=self.parse_sub)
             yield req
 
@@ -39,7 +55,7 @@ class EtodaySpider(scrapy.Spider):
     def parse_sub(self, response):
         self.log("parse_sub url %s" % response.url)
         base_url = get_base_url(response)
-        #self.log("base_url %s" % base_url)
+        # self.log("base_url %s" % base_url)
         #open_in_browser(response)
 
         item = EtodayItem()
@@ -53,10 +69,10 @@ class EtodaySpider(scrapy.Spider):
 
         sites = sel.xpath('//script[@type="text/javascript"]')
         for site in sites:
-	        url = site.xpath('text()').re("NrPicNext=\"(.*?)\"")
-	        if len(url) > 0:
-		        next_url = urljoin(base_url, url[0])
-		        self.log('next_url = %s' % next_url)
-		        req = scrapy.Request(next_url, callback=self.parse_sub)
-		        yield req
-		        break
+            url = site.xpath('text()').re("NrPicNext=\"(.*?)\"")
+            if len(url) > 0:
+                next_url = urljoin(base_url, url[0])
+                self.log('next_sub_url = %s' % next_url)
+                req = scrapy.Request(next_url, callback=self.parse_sub)
+                yield req
+                break
