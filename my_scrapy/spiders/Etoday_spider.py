@@ -1,4 +1,4 @@
-# -*- coding: cp936 -*-
+# -*- coding: utf-8 -*-
 __author__ = 'root'
 
 import scrapy
@@ -17,10 +17,10 @@ class EtodaySpider(scrapy.Spider):
     name = "etoday"
     allowed_domains = ["818today.com"]
     start_urls = [
-        #"http://www.818today.com/xingganmeinv",
+        "http://www.818today.com/xingganmeinv",
         #"http://www.818today.com/qingchunmeinv/",
         #"http://www.818today.com/lianglichemo/",
-        "http://www.818today.com/rihanmeinv/",
+        #"http://www.818today.com/rihanmeinv/",
     ]
 
     def parse(self, response):
@@ -36,7 +36,7 @@ class EtodaySpider(scrapy.Spider):
         for site in sites:
             url = site.xpath('@href').extract()
             name = site.xpath('text()').extract()[0]
-            if name == '��һҳ'.decode('gb2312'):
+            if name == u'下一页':
                 if len(url) > 0:
                     next_url = urljoin(base_url, url[0])
                     #self.log('next_url = %s' % next_url)

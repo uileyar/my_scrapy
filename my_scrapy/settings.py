@@ -36,10 +36,16 @@ NEWSPIDER_MODULE = 'my_scrapy.spiders'
 #TELNETCONSOLE_ENABLED=False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-#}
+DEFAULT_REQUEST_HEADERS = {
+   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+   #'Accept-Language': 'en',
+   'Accept-Language': 'zh-CN,zh;q=0.8,en-US;q=0.6,en;q=0.4',
+   'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.80 Safari/537.36',
+   'Accept-Encoding': 'gzip, deflate',
+
+   'X-WE-Info': 'cid=111_0500_00; wuid=deadbeaf;b=wepsdk_1_0;v=1.0.0;d=1;j=1;',
+   'Proxy-Authorization': 'Basic V2ViRXllOk5hbkppbmc4',
+}
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
@@ -62,9 +68,11 @@ NEWSPIDER_MODULE = 'my_scrapy.spiders'
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'my_scrapy.pipelines.LawsonPipeline': 100,
-    'my_scrapy.pipelines.MyScrapyPipeline': 200,
+    #'my_scrapy.pipelines.LawsonPipeline': 100,
+    #'my_scrapy.pipelines.MyScrapyPipeline': 200,
+	#'my_scrapy.pipelines.FileDownloadPipeline': 300,
 	'scrapy.contrib.pipeline.images.ImagesPipeline': 1,
+
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -86,6 +94,9 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES=[]
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-IMAGES_STORE = '/home/john/picpic'
+IMAGES_STORE = '/home/john/img_scrapy'
 IMAGES_MIN_HEIGHT = 300
 IMAGES_MIN_WIDTH = 300
+IMAGES_EXPIRES = 90
+
+FILE_STORE = '/home/john/file_scrapy'
