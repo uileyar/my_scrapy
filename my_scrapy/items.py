@@ -40,3 +40,10 @@ class EtodayItem(scrapy.Item):
     title = scrapy.Field()
     image_urls = scrapy.Field()
     images = scrapy.Field()
+
+class MeizituItem(scrapy.Item):
+    url = scrapy.Field()
+    name = scrapy.Field()
+    tags = scrapy.Field()
+    image_urls = scrapy.Field()
+    images = scrapy.Field()
