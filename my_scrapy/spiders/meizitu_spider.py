@@ -7,7 +7,7 @@ from my_scrapy.items import MeizituItem
 
 class MeizituSpider(scrapy.Spider):
 	name = "meizitu"
-	allowed_domains = ["meizitu.com"]
+	#allowed_domains = ["meizitu.com","howkuai.com"]
 	start_urls = ('http://www.meizitu.com/',)
 
 	def parse(self, response):
