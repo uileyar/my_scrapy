@@ -17,8 +17,8 @@ class EtodaySpider(scrapy.Spider):
     name = "etoday"
     allowed_domains = ["818today.com"]
     start_urls = [
-        "http://www.818today.com/xingganmeinv",
-        #"http://www.818today.com/qingchunmeinv/",
+        #"http://www.818today.com/xingganmeinv",
+        "http://www.818today.com/qingchunmeinv/",
         #"http://www.818today.com/lianglichemo/",
         #"http://www.818today.com/rihanmeinv/",
     ]

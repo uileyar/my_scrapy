@@ -47,3 +47,11 @@ class MeizituItem(scrapy.Item):
     tags = scrapy.Field()
     image_urls = scrapy.Field()
     images = scrapy.Field()
+
+class FileDownloadItem(scrapy.Item):
+    file_urls = scrapy.Field()
+    files = scrapy.Field()
+
+    url = scrapy.Field()
+    name = scrapy.Field()
+    tags = scrapy.Field()

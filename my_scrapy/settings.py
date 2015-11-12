@@ -73,6 +73,7 @@ ITEM_PIPELINES = {
     #'my_scrapy.pipelines.MyScrapyPipeline': 200,
 	#'my_scrapy.pipelines.FileDownloadPipeline': 300,
 	'scrapy.contrib.pipeline.images.ImagesPipeline': 1,
+    'scrapy.contrib.pipeline.files.FilesPipeline': 2,
 
 }
 
@@ -95,12 +96,15 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES=[]
 #HTTPCACHE_STORAGE='scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-DOWNLOAD_DELAY = 0.25
-RANDOMIZE_DOWNLOAD_DELAY = True
+#DOWNLOAD_DELAY = 0.25
+#RANDOMIZE_DOWNLOAD_DELAY = True
 
 IMAGES_STORE = '/home/john/img_scrapy'
 IMAGES_MIN_HEIGHT = 300
 IMAGES_MIN_WIDTH = 300
 IMAGES_EXPIRES = 90
 
-FILE_STORE = '/home/john/file_scrapy'
+FILES_STORE = '/home/john/file_scrapy'
+FILES_EXPIRES = 90
+
+
