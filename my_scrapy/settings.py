@@ -69,11 +69,16 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
+	'scrapy.contrib.pipeline.images.ImagesPipeline': 1,
+    #'scrapy.contrib.pipeline.files.FilesPipeline': 2,
+
+    #'my_scrapy.pipelines.ImagesDownloadPipeline': 10,
+	#'my_scrapy.pipelines.FileDownloadPipeline': 20,
+
     #'my_scrapy.pipelines.LawsonPipeline': 100,
     #'my_scrapy.pipelines.MyScrapyPipeline': 200,
-	#'my_scrapy.pipelines.FileDownloadPipeline': 300,
-	'scrapy.contrib.pipeline.images.ImagesPipeline': 1,
-    'scrapy.contrib.pipeline.files.FilesPipeline': 2,
+
+
 
 }
 
@@ -98,10 +103,11 @@ ITEM_PIPELINES = {
 
 #DOWNLOAD_DELAY = 0.25
 #RANDOMIZE_DOWNLOAD_DELAY = True
+DOWNLOAD_TIMEOUT = 360
 
 IMAGES_STORE = '/home/john/img_scrapy'
-IMAGES_MIN_HEIGHT = 300
-IMAGES_MIN_WIDTH = 300
+IMAGES_MIN_HEIGHT = 200
+IMAGES_MIN_WIDTH = 200
 IMAGES_EXPIRES = 90
 
 FILES_STORE = '/home/john/file_scrapy'

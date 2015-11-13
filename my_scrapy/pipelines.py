@@ -9,6 +9,9 @@ import pymongo
 import requests
 from my_scrapy import settings
 import os
+from scrapy.pipelines.images import ImagesPipeline
+from scrapy.exceptions import DropItem
+import scrapy
 
 class MyScrapyPipeline(object):
     def process_item(self, item, spider):
@@ -69,4 +72,17 @@ class FileDownloadPipeline(object):
                         handle.write(block)
 
             item['images'] = images
+        return item
+
+class ImagesDownloadPipeline(ImagesPipeline):
+
+    def get_media_requests(self, item, info):
+        for image_url in item['image_urls']:
+            yield scrapy.Request(image_url)
+
+    def item_completed(self, results, item, info):
+        image_paths = [x['path'] for ok, x in results if ok]
+        if not image_paths:
+            raise DropItem("Item contains no images")
+        item['image_paths'] = image_paths
         return item

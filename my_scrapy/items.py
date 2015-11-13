@@ -55,3 +55,10 @@ class FileDownloadItem(scrapy.Item):
     url = scrapy.Field()
     name = scrapy.Field()
     tags = scrapy.Field()
+
+class ImgDownloadItem(scrapy.Item):
+    url = scrapy.Field()
+    name = scrapy.Field()
+    tags = scrapy.Field()
+    image_urls = scrapy.Field()
+    images = scrapy.Field()
