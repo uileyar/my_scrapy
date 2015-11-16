@@ -10,7 +10,14 @@ from scrapy.utils.response import get_base_url
 class MopSpider(scrapy.Spider):
 	name = "mop"
 	# allowed_domains = ["tt.mop.com"]
-	start_urls = ['http://tt.mop.com/c35.html', ]
+	start_urls = [
+		'http://tt.mop.com/c35.html',#猫女郎
+		#'http://tt.mop.com/c44.html',#真我秀
+		#'http://tt.mop.com/c121.html',#T台秀场
+		#'http://tt.mop.com/c45.html',#女神来了
+		#'http://tt.mop.com/c46.html',#Cosplay
+	]
+
 
 	def parse(self, response):
 		self.logger.info("parse url %s" % response.url)
@@ -25,8 +32,8 @@ class MopSpider(scrapy.Spider):
 			url = site.xpath('@href').extract()
 			next_url = urljoin(base_url, url[0])
 			#self.logger.info("item url %s" % next_url)
-			request = scrapy.Request(next_url, callback=self.parse_item)
-			yield request
+			#request = scrapy.Request(next_url, callback=self.parse_item)
+			#yield request
 
 		if has_item == False:
 			return
