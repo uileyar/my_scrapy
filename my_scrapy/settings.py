@@ -70,7 +70,7 @@ DEFAULT_REQUEST_HEADERS = {
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
 	'scrapy.contrib.pipeline.images.ImagesPipeline': 1,
-    #'scrapy.contrib.pipeline.files.FilesPipeline': 2,
+    'scrapy.contrib.pipeline.files.FilesPipeline': 2,
 
     #'my_scrapy.pipelines.ImagesDownloadPipeline': 10,
 	#'my_scrapy.pipelines.FileDownloadPipeline': 20,
